@@ -1,0 +1,42 @@
+.card {
+    width: 95%;
+    margin: 1rem auto;
+    background: linear-gradient(90deg, rgba(14,94,145,1) 0%, rgba(8,131,195,1) 42%, rgba(0,151,255,1) 96%);
+    border-radius: 10px;
+    padding: 1em 0 5em 0;
+
+    h1 {
+        display: flex;
+        justify-content: center;
+        padding: 1em 0;
+    }
+
+}
+
+.container {
+    margin-left: 8px;
+
+    .title {
+        color: black;
+        margin: 1em 1em;
+        font-size: 18px;
+    }
+
+    .mat-form-field {
+        margin-left: 8px;
+        width: 20%;
+    }
+
+    mat-label {
+        color: black;
+        font-size: 17px;
+    }
+
+    input{
+        color: black;
+    }
+    
+}
+.full-with {
+    width: 100%;
+}

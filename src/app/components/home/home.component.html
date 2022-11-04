@@ -1,0 +1,23 @@
+<mat-card class="card mat-elevation-z8">
+    <h1>Teste Atech</h1>
+    <mat-card-content>
+        <div class="container">
+            <mat-card-subtitle class="title">Deseja pesquisar por repositórios apenas com o username?
+            </mat-card-subtitle>
+            <div class="container-form">
+                <mat-form-field appearance="standard">
+                    <mat-label>Informe o username</mat-label>
+                    <input 
+                    [(ngModel)]= "username"
+                    name="username"
+                    placeholder="Ex. nosremehj" 
+                    required 
+                    matInput #input>
+                </mat-form-field>
+                <button (click)="searchRepositoryStarred()" mat-button>
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
