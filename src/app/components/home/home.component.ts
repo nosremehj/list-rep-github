@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { RepositoryStarred } from 'src/app/models/repositoryStarred';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Repository } from 'src/app/models/repository';
 import { RepositoryService } from 'src/app/services/repository.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -8,46 +10,56 @@ import { RepositoryService } from 'src/app/services/repository.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  REPOSITORYSTARRED_DATA : RepositoryStarred[]= [];
-  username: any = '';
+  username: any;
 
-  constructor(private reps: RepositoryService) { }
+  REPOSITORY_DATA: Repository[] = [];
+
+  rep: Repository = {
+    name: '',
+    full_name: '',
+    description: '',
+    private: '',
+    created_at: '',
+    html_url: '',
+    homepage: '',
+    owner_avatar_url: '',
+  }
+
+  displayedColumns: string[] = ['name', 'full_name', 'description', 'created_at', 'acoes'];
+  dataSource = new MatTableDataSource<Repository>(this.REPOSITORY_DATA);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+  constructor(private reps: RepositoryService,
+  ) { }
 
   ngOnInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
-  // searchRepository(): void {
-  //   this.reps.searchRepository(this.username).subscribe((data: any) => {
-  //     console.log('Código de rastreio:', this.username)
-  //     console.log(data)
-  //   })
-  // }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+  searchRepository(): void {
+    this.reps.searchRepository(this.username).subscribe((data) => {
+      this.REPOSITORY_DATA = data;
+      this.dataSource = new MatTableDataSource<Repository>(data);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
   searchRepositoryStarred(): void {
     this.reps.searchRepositoryStarred(this.username).subscribe(data => {
-      this.REPOSITORYSTARRED_DATA = data;
-      this.REPOSITORYSTARRED_DATA.forEach(resposta =>{
-        console.log(resposta.name);
-        console.log(resposta.full_name);
-        console.log(resposta.description);
-        console.log(resposta.private);
-        console.log(resposta.created_at);
-        console.log(resposta.pushed_at);
-        console.log(resposta.html_url);
-        console.log(resposta.homepage);
-        console.log(resposta.owner.avatar_url);
-        console.log(resposta.owner.html_url);
-      });
-      // console.log('Código de rastreio:', this.username)
-      // console.log(data)
-      // console.log(data[0].name);
-      // console.log(data[0].full_name);
-      // console.log(data[0].description);
-      // console.log(data[0].private);
-      // console.log(data[0].created_at);
-      // console.log(data[0].pushed_at);
-      // console.log(data[0].html_url);
-      // console.log(data[0].homepage);
-      // console.log(data[0].owner.avatar_url);
-      // console.log(data[0].owner.html_url);
-    })
+      this.REPOSITORY_DATA = data;
+      this.dataSource = new MatTableDataSource<Repository>(data);
+      this.dataSource.paginator = this.paginator;
+    });
   }
 }
