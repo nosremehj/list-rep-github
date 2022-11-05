@@ -10,6 +10,7 @@
           <mat-form-field appearance="standard">
             <mat-label>Informe o username</mat-label>
             <input
+              (keydown)="searchEvent($event)"
               [(ngModel)]="username"
               name="username"
               placeholder="Ex. nosremehj"
