@@ -27,11 +27,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NavComponent } from './components/nav/nav.component';
+import { RepoStarComponent } from './components/repo-star/repo-star.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    RepoStarComponent
   ],
   imports: [
     BrowserModule,
