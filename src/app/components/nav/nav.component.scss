@@ -1,0 +1,39 @@
+.container {
+    background: linear-gradient(90deg, rgb(3, 0, 53) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+
+    footer {
+        font-size: 16px;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        background: linear-gradient(90deg, rgb(3, 0, 53) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+        bottom: 0;
+        width: 100%;
+        padding: 1rem 0;
+    
+        a {
+            color: rgb(255, 255, 255);
+        }
+    }
+    
+    .app-header {
+        width: 100%;
+    }
+    
+    .nav-list {
+        color: white;
+        display: flex;
+        width: 50%;
+        text-align: end;
+    
+        a {
+            color: white;
+        }
+    
+        h1 {
+            color: white;
+            padding-top: 8px;
+            width: 100%;
+        }
+    }
+}
+
