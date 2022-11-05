@@ -1,0 +1,28 @@
+<mat-drawer-container class="container" autosize>
+    <div class="sidenav-content">
+        <div class="header">
+            <div class="app-header">
+                <mat-nav-list class="nav-list">
+                    <a mat-list-item routerLink="home">
+                        <i class="material-icons">home</i>
+                        Home
+                    </a>
+                    <a mat-list-item routerLink="star">
+                        <i class="material-icons">star</i>
+                        Star repository
+                    </a>
+                    <a mat-list-item href="https://github.com/nosremehj/test-atech" target="_blank">
+                        <i class="material-icons">code</i>
+                        Github
+                    </a>
+                    <h1>Teste Atech</h1>
+                </mat-nav-list>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+
+    <footer>
+        &copy; 2022 - Jhemerson Santos
+    </footer>
+</mat-drawer-container>
