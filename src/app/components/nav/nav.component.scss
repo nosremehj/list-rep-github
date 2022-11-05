@@ -9,31 +9,32 @@
         bottom: 0;
         width: 100%;
         padding: 1rem 0;
-    
+        position: relative;
+
         a {
             color: rgb(255, 255, 255);
         }
     }
-    
+
     .app-header {
         width: 100%;
     }
-    
+
     .nav-list {
         color: white;
         display: flex;
-        width: 50%;
+        width: 100%;
         text-align: end;
-    
+
         a {
             color: white;
+            width: 10%;
         }
-    
+
         h1 {
             color: white;
+            padding-left: 12em;
             padding-top: 8px;
-            width: 100%;
         }
     }
 }
-

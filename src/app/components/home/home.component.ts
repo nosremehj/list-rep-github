@@ -8,10 +8,9 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
   username: any;
 
   REPOSITORY_DATA: Repository[] = [];
@@ -26,9 +25,16 @@ export class HomeComponent implements OnInit {
     html_url: '',
     homepage: '',
     owner_avatar_url: '',
-  }
+  };
 
-  displayedColumns: string[] = ['name', 'full_name', 'description', 'created_at', 'pushed_at', 'acoes'];
+  displayedColumns: string[] = [
+    'name',
+    'full_name',
+    'description',
+    'created_at',
+    'pushed_at',
+    'acoes',
+  ];
   dataSource = new MatTableDataSource<Repository>(this.REPOSITORY_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,13 +42,16 @@ export class HomeComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  constructor(
-    private reps: RepositoryService,
-    private toast: ToastrService
-  ) { }
+  constructor(private reps: RepositoryService, private toast: ToastrService) {}
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  searchEvent(event){
+    if(event.key === "Enter"){
+      this.searchRepository();
+    }
   }
 
   applyFilter(event: Event) {
@@ -55,34 +64,33 @@ export class HomeComponent implements OnInit {
   }
   searchRepository(): void {
     if (!this.username) {
-      this.toast.info("Informe um usuário para fazer a busca", 'Pesquisa');
-      //limpando o campo de pesquisa após a requisição
-      this.username = '';
+      this.toast.info('Informe um usuário para fazer a busca', 'Pesquisa');
     } else {
-      this.reps.searchRepository(this.username).subscribe((data) => {
-        if (data.length == 0) {
-          this.toast.info("Este usuário não possui nenhum repositório", 'Pesquisa');
-          //limpando o campo de pesquisa após a requisição
-          this.username = '';
-        } else {
-          this.toast.success("Pesquisa feita com sucesso!", 'Pesquisa');
-          this.REPOSITORY_DATA = data;
-          this.dataSource = new MatTableDataSource<Repository>(data);
-          this.dataSource.paginator = this.paginator;
-          //limpando o campo de pesquisa após a requisição
-          this.username = '';
+      this.reps.searchRepository(this.username).subscribe(
+        (data) => {
+          if (data.length == 0) {
+            this.toast.info('Este usuário não possui nenhum repositório','Pesquisa');
+            //limpando o campo de pesquisa após a requisição
+            this.username = '';
+          } else {
+            this.toast.success('Pesquisa realizada com sucesso!', 'Pesquisa');
+            this.REPOSITORY_DATA = data;
+            this.dataSource = new MatTableDataSource<Repository>(data);
+            this.dataSource.paginator = this.paginator;
+            //limpando o campo de pesquisa após a requisição
+            this.username = '';
+          }
+        },
+        (ex) => {
+          if (ex.status === 404) {
+            this.toast.error('O usuário não foi encontrado', 'Pesquisa');
+            //limpando o campo de pesquisa após a requisição
+            this.username = '';
+          } else if (ex.status == 403) {
+            this.toast.info('Limite de requisições de API excedido para o seu atual IP, favor esperar um momento','Pesquisa');
+          }
         }
-      }, ex => {
-        if (ex.status === 404) {
-          this.toast.error("O usuário não foi encontrado", 'Pesquisa');
-          //limpando o campo de pesquisa após a requisição
-          this.username = '';
-        } else if (ex.status == 403) {
-          this.toast.info("Limite de requisições de API excedido para o seu atual IP, favor esperar um momento", 'Pesquisa');
-          //limpando o campo de pesquisa após a requisição
-          this.username = '';
-        }
-      });
+      );
     }
   }
 

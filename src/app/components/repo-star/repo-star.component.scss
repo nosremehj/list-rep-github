@@ -1,6 +1,9 @@
 .card {
     width: 100%;
-    background: linear-gradient(90deg, rgb(3, 0, 53) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    background: linear-gradient(90deg,
+            rgb(3, 0, 53) 0%,
+            rgba(9, 9, 121, 1) 35%,
+            rgba(0, 212, 255, 1) 100%);
     padding: 1em 0 5em 0;
     border-radius: 20px black;
 }
@@ -41,7 +44,6 @@
     input {
         color: white;
     }
-
 }
 
 .full-with {
@@ -58,13 +60,13 @@ table {
         text-align: center;
     }
 
-    .mat-form-field {
-        font-size: 14px;
-        width: 100%;
+    .material-icons {
+        color: white;
     }
 }
 
 .mat-paginator {
+    color: white;
     margin-left: 5.8em;
     width: 90%;
 }

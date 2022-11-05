@@ -8,9 +8,8 @@ describe('RepoStarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RepoStarComponent ]
-    })
-    .compileComponents();
+      declarations: [RepoStarComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -7,7 +7,6 @@
 
 .container {
     margin: 2em 2em;
-
     .title {
         color: white;
         margin: 1em 1em;
@@ -52,19 +51,18 @@ table {
     margin-left: 5em;
     width: 90%;
 
-    td,
-    th {
+    td,th {
         width: 20%;
         text-align: center;
     }
 
-    .mat-form-field {
-        font-size: 14px;
-        width: 100%;
+    .material-icons{
+        color: white;
     }
 }
 
 .mat-paginator {
+    color: white;
     margin-left: 5.8em;
     width: 90%;
 }
