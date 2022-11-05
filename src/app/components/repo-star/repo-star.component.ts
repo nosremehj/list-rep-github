@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./repo-star.component.scss'],
 })
 export class RepoStarComponent implements OnInit {
-  username: any;
+  username: string;
 
   REPOSITORY_DATA: Repository[] = [];
 
