@@ -56,44 +56,41 @@ export class HomeComponent implements OnInit {
   }
   searchRepository(): void {
     if (!this.username) {
-      this.toast.error("Informe um usuário para fazer a busca", 'Pesquisa');
-      this.username='';
+      this.toast.info("Informe um usuário para fazer a busca", 'Pesquisa');
+      //limpando o campo de pesquisa após a requisição
+      this.username = '';
     } else {
       this.reps.searchRepository(this.username).subscribe((data) => {
         if (data.length == 0) {
-          this.toast.error("Este usuário não possui nenhum repositório", 'Pesquisa');
-          this.username='';
+          this.toast.info("Este usuário não possui nenhum repositório", 'Pesquisa');
+          //limpando o campo de pesquisa após a requisição
+          this.username = '';
         } else {
           this.toast.success("Pesquisa feita com sucesso!", 'Pesquisa');
           this.REPOSITORY_DATA = data;
           this.dataSource = new MatTableDataSource<Repository>(data);
           this.dataSource.paginator = this.paginator;
-          this.username='';
+          //limpando o campo de pesquisa após a requisição
+          this.username = '';
         }
       }, ex => {
         if (ex.status === 404) {
           this.toast.error("O usuário não foi encontrado", 'Pesquisa');
-          this.username='';
+          //limpando o campo de pesquisa após a requisição
+          this.username = '';
         } else if (ex.status == 403) {
-          this.toast.error("Limite de requisições de API excedido para o seu atual IP, favor esperar um momento", 'Pesquisa');
-          this.username='';
+          this.toast.info("Limite de requisições de API excedido para o seu atual IP, favor esperar um momento", 'Pesquisa');
+          //limpando o campo de pesquisa após a requisição
+          this.username = '';
         }
       });
     }
   }
 
-  searchRepositoryStarred(): void {
-    this.reps.searchRepositoryStarred(this.username).subscribe(data => {
-      this.REPOSITORY_DATA = data;
-      this.dataSource = new MatTableDataSource<Repository>(data);
-      this.dataSource.paginator = this.paginator;
-    });
-  }
-
-  validaCampos():boolean{
-    if(!this.username){
+  validaCampos(): boolean {
+    if (!this.username) {
       return false;
-    } else{
+    } else {
       return true;
     }
   }
