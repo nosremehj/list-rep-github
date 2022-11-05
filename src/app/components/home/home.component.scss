@@ -1,6 +1,6 @@
 .card {
     width: 100%;
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    background: linear-gradient(90deg, rgb(3, 0, 53) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
     padding: 1em 0 5em 0;
 
     h1 {
@@ -23,6 +23,7 @@
             color: rgb(255, 255, 255);
         }
     }
+
 }
 
 .container {
@@ -30,14 +31,28 @@
         color: white;
         margin: 1em 1em;
         font-size: 18px;
+        text-align: center;
     }
 
     .mat-form-field {
-        margin-left: 8px;
-        width: 50%;
+        width: 30%;
+        padding: 10px 10px;
+        text-align: center;
+        color: white;
     }
-    
-    mat-label{
+
+    .container-form{
+        text-align: center;
+        color: white;
+    }
+
+    .container-form:nth-child(1){
+        text-align: center;
+        margin-right: 5em;
+        color: white;
+    }
+
+    mat-label {
         color: white;
         font-size: 17px;
     }
@@ -45,6 +60,7 @@
     input {
         color: white;
     }
+
 }
 
 .full-with {
@@ -52,23 +68,20 @@
 }
 
 table {
-    margin: 0px 10px;
-    width: 99%;
+    margin-left: 5em;
+    width: 90%;
+    
+    td, th {
+        width: 20%;
+        text-align: center;
+      }
+      .mat-form-field {
+        font-size: 14px;
+        width: 100%;
+      }
 }
 
-.mat-form-field {
-    font-size: 14px;
-    width: 30%;
+.mat-paginator {
+    margin-left: 5.8em;
+    width: 90%;
 }
-
-.mat-paginator{
-    margin: 0 10px;
-    padding: 0;
-    width: 99%;
-}
-
-td,th {
-    width: 10%;
-    align-items: center;
-}
-

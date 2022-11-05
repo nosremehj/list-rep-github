@@ -8,8 +8,9 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-//Imports do Angular Material
+import { ToastrModule } from 'ngx-toastr';
 
+//Imports do Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -52,6 +53,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatListModule,
     MatDialogModule,
     MatCardModule,
+    ToastrModule.forRoot({
+      timeOut:4000,
+      closeButton: true,
+      progressBar: true
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

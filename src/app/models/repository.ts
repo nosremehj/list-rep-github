@@ -4,6 +4,7 @@ export interface Repository {
     description: string;
     private: any;
     created_at: any;
+    pushed_at: any;
     html_url: string;
     homepage: string;
     owner_avatar_url: any;
