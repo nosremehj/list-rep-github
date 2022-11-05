@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -41,6 +43,8 @@ import { RepoStarComponent } from './components/repo-star/repo-star.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    RouterTestingModule,
+    RouterModule,
     //imports AngularMaterial
     MatFormFieldModule,
     MatPaginatorModule,
