@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  username: any;
+  username: string;
 
   REPOSITORY_DATA: Repository[] = [];
 
