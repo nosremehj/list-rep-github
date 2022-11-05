@@ -25,7 +25,7 @@
             <div>
                 <div class="container-form">
                     <mat-form-field appearance="standard">
-                        <mat-label>Filtro de repositório</mat-label>
+                        <mat-label>Filtro</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. test-atech" #input>
                     </mat-form-field>
                 </div>
@@ -39,7 +39,7 @@
 
                     <!-- Name Column -->
                     <ng-container matColumnDef="full_name">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Autor </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Autor/Rep </th>
                         <td mat-cell *matCellDef="let row"> {{row.full_name}} </td>
                     </ng-container>
 
@@ -82,7 +82,7 @@
 
             </div>
             <footer>
-                &copy; 2022 - Teste Front-End Atech
+                &copy; 2022 - Search Rep GitHub
                 <a mat-list-item href="https://github.com/nosremehj/test-atech" target="_blank">
                     Github
                 </a>
