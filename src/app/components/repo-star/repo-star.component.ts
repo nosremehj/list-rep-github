@@ -4,13 +4,12 @@ import { RepositoryService } from 'src/app/services/repository.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-repo-star',
+  templateUrl: './repo-star.component.html',
+  styleUrls: ['./repo-star.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class RepoStarComponent implements OnInit {
 
   username: any;
 
@@ -53,13 +52,13 @@ export class HomeComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  searchRepository(): void {
+  searchRepositoryStarred(): void {
     if (!this.username) {
       this.toast.info("Informe um usuário para fazer a busca", 'Pesquisa');
       //limpando o campo de pesquisa após a requisição
       this.username = '';
     } else {
-      this.reps.searchRepository(this.username).subscribe((data) => {
+      this.reps.searchRepositoryStarred(this.username).subscribe((data) => {
         if (data.length == 0) {
           this.toast.info("Este usuário não possui nenhum repositório", 'Pesquisa');
           //limpando o campo de pesquisa após a requisição
