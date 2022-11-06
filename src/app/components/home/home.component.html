@@ -1,12 +1,13 @@
 <div class="container">
-  <mat-card class="card mat-elevation-z12">
+  <h1>Listando Repositórios</h1>
+  <mat-card class="card mat-elevation-z8">
     <mat-card-content>
       <div>
         <mat-card-subtitle class="title"
-          >Liste todos os repositórios apenas com o username do github
+          >Liste todos os repositórios do GitHub usando apenas o username
         </mat-card-subtitle>
-        <div class="container-form">
-          <mat-form-field appearance="standard">
+        <div >
+          <mat-form-field class="mat-form-field1" appearance="legacy">
             <mat-label>Informe o username</mat-label>
             <input
               (keydown)="searchEvent($event)"
@@ -23,24 +24,23 @@
             [disabled]="!validaCampos()"
             mat-button
           >
-            <mat-icon>search</mat-icon>
+          <i class="material-icons">search</i>
           </button>
         </div>
       </div>
-
       <div>
-        <div class="container-form">
-          <mat-form-field appearance="standard">
-            <mat-label>Filtro</mat-label>
-            <input
-              matInput
-              (keyup)="applyFilter($event)"
-              placeholder="Ex. test-atech"
-              #input
-            />
-          </mat-form-field>
-        </div>
-        <table mat-table [dataSource]="dataSource">
+        <mat-form-field class="mat-form-field2" appearance="standard">
+          <mat-label>Filtro</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. test-atech"
+            #input
+          />
+        </mat-form-field>
+      </div>
+      <div class="div-table mat-elevation-z6">
+        <table  mat-table [dataSource]="dataSource">
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               Nome do repositório
@@ -100,7 +100,7 @@
         <mat-paginator
           [pageSizeOptions]="[5, 10, 20]"
           showFirstLastButtons
-          aria-label="Select page of periodic elements"
+          aria-label="Selecione a página"
         >
         </mat-paginator>
       </div>
