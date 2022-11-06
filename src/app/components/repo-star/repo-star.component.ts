@@ -47,8 +47,8 @@ export class RepoStarComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  searchEvent(event){
-    if(event.key === "Enter"){
+  searchEvent(event) {
+    if (event.key === 'Enter') {
       this.searchRepositoryStarred();
     }
   }
@@ -69,7 +69,11 @@ export class RepoStarComponent implements OnInit {
         (data) => {
           if (data.length == 0) {
             this.toast.info(
-              'Este usuário não possui nenhum repositório','Pesquisa');
+              'Este usuário não possui nenhum repositório',
+              'Pesquisa'
+            );
+            //limpando a table caso a consulta dê erro
+            this.dataSource = new MatTableDataSource<Repository>([]);
             //limpando o campo de pesquisa após a requisição
             this.username = '';
           } else {
@@ -77,6 +81,7 @@ export class RepoStarComponent implements OnInit {
             this.REPOSITORY_DATA = data;
             this.dataSource = new MatTableDataSource<Repository>(data);
             this.dataSource.paginator = this.paginator;
+            this.dataSource.paginator.firstPage();
             //limpando o campo de pesquisa após a requisição
             this.username = '';
           }
@@ -84,10 +89,17 @@ export class RepoStarComponent implements OnInit {
         (ex) => {
           if (ex.status === 404) {
             this.toast.error('O usuário não foi encontrado', 'Pesquisa');
+            //limpando a table caso a consulta dê erro
+            this.dataSource = new MatTableDataSource<Repository>([]);
+          } else if (ex.status == 403) {
+            this.toast.info(
+              'Limite de requisições de API excedido para o seu atual IP, favor esperar um momento',
+              'Pesquisa'
+            );
             //limpando o campo de pesquisa após a requisição
             this.username = '';
-          } else if (ex.status == 403) {
-            this.toast.info('Limite de requisições de API excedido para o seu atual IP, favor esperar um momento','Pesquisa');
+            //limpando a table caso a consulta dê erro
+            this.dataSource = new MatTableDataSource<Repository>([]);
           }
         }
       );
