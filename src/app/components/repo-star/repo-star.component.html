@@ -30,20 +30,20 @@
         </div>
       </div>
 
-      <mat-list>
+      <mat-list
+        *ngFor="
+          let dados of REPOSITORY_DATA
+            | paginate
+              : {
+                  itemsPerPage: 5,
+                  currentPage: page,
+                  totalItems: REPOSITORY_DATA.length
+                }
+        "
+      >
+        <mat-divider></mat-divider>
         <mat-list-item
-          *ngFor="
-            let dados of REPOSITORY_DATA
-              | paginate
-                : {
-                    itemsPerPage: 5,
-                    currentPage: page,
-                    totalItems: REPOSITORY_DATA.length
-                  }
-          "
-        >
-          <mat-divider></mat-divider>
-          <div class="img-a">
+          ><div class="img-a">
             <img
               matListAvatar
               src="{{ dados.owner.avatar_url }}"
@@ -54,13 +54,9 @@
                 {{ dados.name }}
               </a>
             </mat-card-title>
-            <p matLine>{{ dados.description }}</p>
-
-            <p>
-              <a matLine target="_blank" href="{{ dados.homepage }}">
-                {{ dados.homepage }}</a
-              >
-            </p>
+            <div class="description">
+              <p matLine>{{ dados.description }}</p>
+            </div>
           </div>
           <div class="chip-p">
             <mat-chip-list *ngIf="dados.language !== null">
@@ -75,6 +71,16 @@
             >
           </div>
         </mat-list-item>
+        <p class="test">
+          <a
+            class="homepage"
+            matLine
+            target="_blank"
+            href="{{ dados.homepage }}"
+          >
+            {{ dados.homepage }}</a
+          >
+        </p>
       </mat-list>
       <pagination-controls
         (pageChange)="page = $event"

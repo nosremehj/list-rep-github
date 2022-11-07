@@ -28,11 +28,16 @@
                 margin-bottom: 20px;
             }
 
+            a {
+                padding: 20px 0px;
+            }
+
             p {
-                white-space: normal;
                 a {
                     font-size: 14px;
                     margin-right: 10px;
+                    padding: 0px;
+
                 }
             }
         }
@@ -206,7 +211,7 @@
     }
 }
 
-@media all and (max-width:412px) {
+@media all and (max-width:414px) {
     h1 {
         font-size: 18px;
     }
@@ -239,12 +244,20 @@
                     height: 100px;
                     width: 100px;
                 }
-
+        
                 p {
                     a {
                         font-size: 14px;
                         margin-right: 10px;
                     }
+                }
+            }
+            .description{
+                white-space: normal;
+                    font-size: 14px;
+                a{
+                    white-space: normal;
+                    font-size: 10px;
                 }
             }
 
@@ -259,7 +272,7 @@
                 }
 
                 span {
-                    white-space: normal;
+                    white-space: pre-line;
                     text-align: end;
                 }
             }
