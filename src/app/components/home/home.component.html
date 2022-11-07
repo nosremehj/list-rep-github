@@ -6,8 +6,8 @@
         <mat-card-subtitle class="title"
           >Liste todos os repositórios do GitHub usando apenas o username
         </mat-card-subtitle>
-        <div >
-          <mat-form-field class="mat-form-field1" appearance="legacy">
+        <div>
+          <mat-form-field appearance="legacy">
             <mat-label>Informe o username</mat-label>
             <input
               (keydown)="searchEvent($event)"
@@ -24,86 +24,61 @@
             [disabled]="!validaCampos()"
             mat-button
           >
-          <i class="material-icons">search</i>
+            <i class="material-icons">search</i>
           </button>
         </div>
       </div>
-      <div>
-        <mat-form-field class="mat-form-field2" appearance="standard">
-          <mat-label>Filtro</mat-label>
-          <input
-            matInput
-            (keyup)="applyFilter($event)"
-            placeholder="Ex. test-atech"
-            #input
-          />
-        </mat-form-field>
-      </div>
-      <div class="div-table mat-elevation-z6">
-        <table  mat-table [dataSource]="dataSource">
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              Nome do repositório
-            </th>
-            <td mat-cell *matCellDef="let row">{{ row.name }}</td>
-          </ng-container>
 
-          <ng-container matColumnDef="full_name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Autor/Rep</th>
-            <td mat-cell *matCellDef="let row">{{ row.full_name }}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
-            <td mat-cell *matCellDef="let row">{{ row.description }}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="created_at">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Criado em</th>
-            <td mat-cell *matCellDef="let row">
-              {{ row.created_at | date: "dd/MM/yyyy" }}
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="pushed_at">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              Ultima atualização
-            </th>
-            <td mat-cell *matCellDef="let row">
-              {{ row.pushed_at | date: "dd/MM/yyyy" }}
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="acoes">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              Visualizar no GitHub
-            </th>
-            <td mat-cell *matCellDef="let row">
-              <a target="_blank" href="{{ row.html_url }}">
-                <i class="material-icons delete">visibility</i>
-              </a>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-
-          <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="10">
-              Nenhum dado foi encontrado correspondente ao filtro "{{
-                input.value
-              }}"
-            </td>
-          </tr>
-        </table>
-
-        <mat-paginator
-          [pageSizeOptions]="[5, 10, 20]"
-          showFirstLastButtons
-          aria-label="Selecione a página"
+      <mat-list>
+        <mat-list-item
+          *ngFor="
+            let dados of REPOSITORY_DATA
+              | paginate
+                : {
+                    itemsPerPage: 5,
+                    currentPage: page,
+                    totalItems: REPOSITORY_DATA.length
+                  }
+          "
         >
-        </mat-paginator>
-      </div>
+          <mat-divider></mat-divider>
+          <div class="img-a">
+            <img
+              matListAvatar
+              src="{{ dados.owner.avatar_url }}"
+              alt="Imagem do perfil do github"
+            />
+            <mat-card-title>
+              <a matLine target="_blank" href="{{ dados.html_url }}">
+                {{ dados.name }}
+              </a>
+            </mat-card-title>
+            <p matLine>{{ dados.description }}</p>
+
+            <p>
+              <a matLine target="_blank" href="{{ dados.homepage }}">
+                {{ dados.homepage }}</a
+              >
+            </p>
+          </div>
+          <div class="chip-p">
+            <mat-chip-list *ngIf="dados.language !== null">
+              <mat-chip>{{ dados.language }} </mat-chip>
+            </mat-chip-list>
+            <span matLine>
+              Criado em: {{ dados.created_at | date: "dd/MM/yyyy" }}</span
+            >
+            <span matLine>
+              Ultima atualização em:
+              {{ dados.pushed_at | date: "dd/MM/yyyy" }}</span
+            >
+          </div>
+        </mat-list-item>
+      </mat-list>
+      <pagination-controls
+        (pageChange)="page = $event"
+        [responsive]="true"
+      ></pagination-controls>
     </mat-card-content>
   </mat-card>
 </div>

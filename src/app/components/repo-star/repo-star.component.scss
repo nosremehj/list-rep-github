@@ -1,59 +1,284 @@
-
-.card {
-    width: 100%;
-    padding: 1em 0 5em 0;
-    border-radius: 20px black;
-}
-
 .container {
     margin: 2em 2em;
+
     .title {
         color: black;
-        margin: 1em 1em;
+        margin: 1em 0em;
         font-size: 18px;
-        text-align: center;
-    }
-    
-    .mat-form-field1{
-        margin-left: 6em;
-        width: 87%;
-    }
-
-    .mat-form-field2 {
-        margin-left: 6em;
-        width: 90%;
     }
 
     mat-label {
         color: black;
-        font-size: 17px;
+        font-size: 18px;
     }
 
     input {
         color: black;
     }
 
-}
-
-.full-with {
-    width: 100%;
-}
-
-.div-table{
-    width: 90%;
-    margin: 2em 0em 0em 6em;
-    table {
-        width: 100%;
-        td,th {
-            width: 20%;
-            text-align: center;
-        }
-    
+    mat-form-field {
+        width: 30%;
     }
-    
-    .mat-paginator {
-        color: black;
-        margin-left: 5.8em;
-        width: 95%;
+
+    mat-list {
+        .img-a {
+            img {
+                height: 100px;
+                width: 100px;
+                margin-bottom: 20px;
+            }
+
+            p {
+                white-space: normal;
+                a {
+                    font-size: 14px;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+
+        .chip-p {
+
+            margin: 0px 0px 30px 25px;
+            flex-flow: row nowrap;
+
+            mat-chip {
+                margin-left: 20em;
+                margin: 0 0 5px 0;
+                text-align: end;
+            }
+        }
+    }
+}
+
+@media all and (max-width:375px) {
+    h1 {
+        font-size: 16px;
+    }
+
+    .container {
+        margin: 1rem 1rem;
+
+        .title {
+            color: black;
+            margin: 0.5rem 0rem;
+            font-size: 14px;
+        }
+
+        mat-label {
+            color: black;
+            font-size: 13px;
+        }
+
+        input {
+            color: black;
+        }
+
+        mat-form-field {
+            width: 65%;
+        }
+
+        mat-list-item {
+            .img-a {
+                img {
+                    height: 100px;
+                    width: 100px;
+                }
+
+                p {
+                    a {
+                        font-size: 14px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+
+            .chip-p {
+                white-space: normal;
+                margin: 0px 0px 30px 25px;
+
+                mat-chip {
+                    margin: 0 0 5px 0;
+                    white-space: normal;
+                }
+
+                span {
+                    white-space: pre-line;
+                    text-align: end;
+                }
+            }
+
+            display: flex;
+            margin: 10px auto;
+            white-space: normal;
+
+            a {
+                display: flex;
+                white-space: normal;
+            }
+
+            p {
+                display: flex;
+                white-space: normal;
+                justify-content: first baseline;
+            }
+
+        }
+    }
+}
+
+@media all and (max-width:390px) {
+    h1 {
+        font-size: 16px;
+    }
+
+    .container {
+        margin: 1rem 1rem;
+
+        .title {
+            color: black;
+            margin: 0.5rem 0rem;
+            font-size: 18px;
+        }
+
+        mat-label {
+            color: black;
+            font-size: 16px;
+        }
+
+        input {
+            color: black;
+        }
+
+        mat-form-field {
+            width: 65%;
+        }
+
+        mat-list-item {
+            .img-a {
+                img {
+                    height: 100px;
+                    width: 100px;
+                }
+
+                p {
+                    a {
+                        font-size: 14px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+
+            .chip-p {
+                white-space: normal;
+                margin: 0px 0px 10px 10px;
+
+                mat-chip {
+                    margin: 0 0 5px 0;
+                    white-space: normal;
+                }
+
+                span {
+                    white-space: pre-line;
+                    text-align: end;
+                }
+            }
+
+            display: flex;
+            margin: 5px auto;
+            white-space: normal;
+
+            a {
+                display: flex;
+                white-space: normal;
+            }
+
+            p {
+                display: flex;
+                white-space: normal;
+                justify-content: first baseline;
+            }
+
+        }
+    }
+}
+
+@media all and (max-width:412px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    .container {
+        margin: 1rem 1rem;
+
+        .title {
+            color: black;
+            margin: 0.5rem 0rem;
+            font-size: 18px;
+        }
+
+        mat-label {
+            color: black;
+            font-size: 16px;
+        }
+
+        input {
+            color: black;
+        }
+
+        mat-form-field {
+            width: 65%;
+        }
+
+        mat-list-item {
+            .img-a {
+                img {
+                    height: 100px;
+                    width: 100px;
+                }
+
+                p {
+                    a {
+                        font-size: 14px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+
+            .chip-p {
+                white-space: normal;
+                margin: 0px 0px 10px 10px;
+
+                mat-chip {
+                    margin: 0 0 5px 0;
+                    white-space: normal;
+                }
+
+                span {
+                    white-space: normal;
+                    text-align: end;
+                }
+            }
+
+            display: flex;
+            margin: 5px auto;
+            white-space: normal;
+
+            a {
+                display: flex;
+                white-space: normal;
+            }
+
+            p {
+                display: flex;
+                white-space: normal;
+                justify-content: first baseline;
+            }
+
+        }
     }
 }

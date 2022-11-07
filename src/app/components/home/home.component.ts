@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Repository } from 'src/app/models/repository';
 import { RepositoryService } from 'src/app/services/repository.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-home',
@@ -13,40 +13,30 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeComponent implements OnInit {
   username: string;
 
+  page: any = 1;
+
   REPOSITORY_DATA: Repository[] = [];
 
   rep: Repository = {
     name: '',
     full_name: '',
     description: '',
-    private: '',
+    language: '',
     created_at: '',
     pushed_at: '',
     html_url: '',
     homepage: '',
-    owner_avatar_url: '',
+    owner: '',
   };
 
-  displayedColumns: string[] = [
-    'name',
-    'full_name',
-    'description',
-    'created_at',
-    'pushed_at',
-    'acoes',
-  ];
-  dataSource = new MatTableDataSource<Repository>(this.REPOSITORY_DATA);
+  ngAfterViewInit() {}
+  constructor(
+    private reps: RepositoryService,
+    private toast: ToastrService,
+    private spinner: NgxSpinnerService
+  ) {}
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-  constructor(private reps: RepositoryService, private toast: ToastrService) {}
-
-  ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
+  ngOnInit(): void {}
 
   searchEvent(event) {
     if (event.key === 'Enter') {
@@ -54,57 +44,63 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  limpar() {
+    return (this.REPOSITORY_DATA = []);
   }
+
   searchRepository(): void {
-    if (!this.username) {
-      this.toast.info('Informe um usuário para fazer a busca', 'Pesquisa');
-    } else {
-      this.reps.searchRepository(this.username).subscribe(
-        (data) => {
-          if (data.length == 0) {
-            this.toast.info(
-              'Este usuário não possui nenhum repositório',
-              'Pesquisa'
-            );
-            //limpando a table caso a consulta dê erro
-            this.dataSource = new MatTableDataSource<Repository>([]);
-            //limpando o campo de pesquisa após a requisição
-            this.username = '';
-          } else {
-            this.toast.success('Pesquisa realizada com sucesso!', 'Pesquisa');
-            this.REPOSITORY_DATA = data;
-            this.dataSource = new MatTableDataSource<Repository>(data);
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.paginator.firstPage();
-            //limpando o campo de pesquisa após a requisição
-            this.username = '';
+    //mostrando o spinner na tela
+    this.spinner.show();
+    //setando um tempo para o spinner ser exibido
+    setTimeout(() => {
+      //removendo o spinner na tela
+      this.spinner.hide();
+
+      if (!this.username) {
+        this.toast.info('Informe um usuário para fazer a busca', 'Pesquisa');
+        //Voltar a páginação para o inicio sempre que houver uma busca
+        this.page = 1;
+      } else {
+        this.reps.searchRepository(this.username).subscribe(
+          (data) => {
+            if (data.length == 0) {
+              this.toast.info(
+                'Este usuário não possui nenhum repositório',
+                'Pesquisa'
+              );
+              //Voltar a páginação para o inicio sempre que houver uma busca
+              this.page = 1;
+              //limpando a lista caso a consulta dê erro
+              this.limpar();
+              //limpando o campo de pesquisa após a requisição
+              this.username = '';
+            } else {
+              this.toast.success('Pesquisa realizada com sucesso!', 'Pesquisa');
+              this.REPOSITORY_DATA = data;
+              //limpando o campo de pesquisa após a requisição
+              this.username = '';
+              //Voltar a páginação para o inicio sempre que houver uma busca
+              this.page = 1;
+            }
+          },
+          (ex) => {
+            this.limpar();
+            if (ex.status === 404) {
+              this.toast.error('O usuário não foi encontrado', 'Pesquisa');
+              //Voltar a páginação para o inicio sempre que houver uma busca
+              this.page = 1;
+            } else if (ex.status == 403) {
+              this.toast.info(
+                'Limite de requisições de API excedido para o seu atual IP, favor esperar um momento',
+                'Pesquisa'
+              );
+              //limpando o campo de pesquisa após a requisição
+              this.username = '';
+            }
           }
-        },
-        (ex) => {
-          if (ex.status === 404) {
-            this.toast.error('O usuário não foi encontrado', 'Pesquisa');
-            //limpando a table caso a consulta dê erro
-            this.dataSource = new MatTableDataSource<Repository>([]);
-          } else if (ex.status == 403) {
-            this.toast.info(
-              'Limite de requisições de API excedido para o seu atual IP, favor esperar um momento',
-              'Pesquisa'
-            );
-            //limpando a table caso a consulta dê erro
-            this.username = '';
-            //limpando a table caso a consulta dê erro
-            this.dataSource = new MatTableDataSource<Repository>([]);
-          }
-        }
-      );
-    }
+        );
+      }
+    }, 100);
   }
 
   validaCampos(): boolean {

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,8 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule } from '@angular/router';
 
-import { ToastrModule } from 'ngx-toastr';
 
+//Imports Ngx
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxPaginationModule } from 'ngx-pagination';
 //Imports do Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -30,13 +33,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NavComponent } from './components/nav/nav.component';
 import { RepoStarComponent } from './components/repo-star/repo-star.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatChipsModule} from '@angular/material/chips';  
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavComponent,
-    RepoStarComponent
-  ],
+    RepoStarComponent,
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -61,13 +67,19 @@ import { RepoStarComponent } from './components/repo-star/repo-star.component';
     MatListModule,
     MatDialogModule,
     MatCardModule,
+    MatChipsModule,
+    MatDividerModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
-      timeOut:4000,
+      timeOut:2000,
       closeButton: true,
-      progressBar: true
+      progressBar: true,
     }),
+    NgxSpinnerModule,
+    NgxPaginationModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
