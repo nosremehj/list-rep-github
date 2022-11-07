@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Repository } from 'src/app/models/repository';
 import { RepositoryService } from 'src/app/services/repository.service';
-import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
@@ -55,13 +54,13 @@ export class RepoStarComponent implements OnInit {
       this.spinner.hide();
 
       if (!this.username) {
-        this.toast.info('Informe um usuário para fazer a busca', 'Pesquisa');
+        this.toast.info('Informe um usuário para fazer a busca.', 'Pesquisa');
       } else {
         this.reps.searchRepositoryStarred(this.username).subscribe(
           (data) => {
             if (data.length == 0) {
               this.toast.info(
-                'Este usuário não possui nenhum repositório',
+                'Este usuário não possui nenhum repositório marcado com estrela.',
                 'Pesquisa'
               );
               //Voltar a páginação para o inicio sempre que houver uma busca
@@ -82,12 +81,12 @@ export class RepoStarComponent implements OnInit {
           (ex) => {
             this.limpar();
             if (ex.status === 404) {
-              this.toast.error('O usuário não foi encontrado', 'Pesquisa');
+              this.toast.error('O usuário não foi encontrado.', 'Pesquisa');
               //Voltar a páginação para o inicio sempre que houver uma busca
               this.page = 1;
             } else if (ex.status == 403) {
               this.toast.info(
-                'Limite de requisições de API excedido para o seu atual IP, favor esperar um momento',
+                'Limite de requisições de API excedido para o seu atual IP, favor esperar um momento!',
                 'Pesquisa'
               );
               //limpando o campo de pesquisa após a requisição
