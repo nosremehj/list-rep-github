@@ -12,4 +12,8 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
     this.router.navigate(['home']);
   }
+
+  voltarTopo(){
+    return window.scroll(0,0);
+  }
 }

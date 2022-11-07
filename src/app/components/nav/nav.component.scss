@@ -33,7 +33,7 @@ footer {
     color: white;
     background: linear-gradient(90deg, rgba(14, 94, 145, 1) 0%, rgba(8, 131, 195, 1) 42%, rgba(0, 151, 255, 1) 96%);
     text-align: center;
-    position: relative;
+    position: fixed;
     bottom: 0;
     width: 100%;
     padding: 1rem 0;
@@ -118,9 +118,6 @@ footer {
 }
 
 @media all and (max-width:412px) {
-    .container {
-        height: 100%;
-    }
 
     .sidenav {
         width: 8rem;
