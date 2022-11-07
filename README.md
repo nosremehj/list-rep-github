@@ -1,27 +1,67 @@
-# TestAtech
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.18.
+# List Repository GitHub
 
-## Development server
+Trata-se de uma aplicação que usa a API do github para a **listagem de repositórios**. Uma API voltada para possibilidade
+de listagem de repositórios de um determinado usuário e também de repositórios marcados
+com **estrela**.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### **📋 Pré-requisitos**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Para executar o projeto, será necessário instalar os seguintes programas:
 
-## Build
+💡 - Node js 14 ou versões superiores - Angular/cli 12 ou versões superiores
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+****🔧 Construção****
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Para instalar as dependências do projeto, executar o comando abaixo:
 
-## Running end-to-end tests
+```angular
+ npm i ou npm install
+```
+O comando irá baixar todas as dependências do projeto e criar um diretório *node_modules*
+ com os pacotes instalados. Além disso se a instalação de algum pacote *falhar*,
+ será exibido essa informação no console.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Para executar o projeto, executar o comando abaixo:
 
-## Further help
+```angular
+ npm start ou ng serve
+```
+O comando irá compilar todas as dependências e rodar o projeto. Além disso, será
+exibido no console a informação de *sucesso* ou *falha* e onde está sendo hospedado. Normalmente
+sendo hospedado em `http://localhost:4200/`. Navegue até o endereço para a exibição.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**Lembrete:** A aplicação irá fazer reload da página a partir de qualquer atualização do código. 
+
+ **Lembrete:** Pode haver a possibilidade do comando não rodar a depender do terminal. Em caso de estar usando o terminal
+da **PowerShell** utilize o comando *npm start*.
+
+## Testes
+
+Para rodar os testes, utilize o comando abaixo:
+
+```angular
+npm test ou ng test
+```
+O comando irá compilar os testes e irá abrir um *navegador* para a exibição dos testes criados.
+Além disso será exibido no console e no navegador informações sobre o *status* dos testes. Se houve **sucesso**
+ou **falha**.
+## Documentação
+
+Para ter acesso a documentação, utilize o comando abaixo:
+
+```angular
+npm run compodoc:build-and-serve
+```
+O comando irá construir a documentação *atualizada* e rodar em seguida. Além disso será exibido
+no console onde será hospedado para a visualização. Normalmente sendo em `http://localhost:8080/`.
+
+
+## Cloud
+
+O deploy do projeto foi feito no Vercel, uma plataforma de nuvem muito versátil para pequenas aplicações.
+Segue abaixo o link para a visualização do projeto hospedado.
+
+https://test-atech-ten.vercel.app/
