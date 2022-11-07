@@ -9,12 +9,12 @@ import { Repository } from '../models/repository';
 export class RepositoryService {
   constructor(private http: HttpClient) {}
 
-  searchRepository(name: any): Observable<Repository[]> {
+  searchRepository(name: string): Observable<Repository[]> {
     return this.http.get<Repository[]>(
       `https://api.github.com/users/${name}/repos?per_page=50`
     );
   }
-  searchRepositoryStarred(name: any): Observable<Repository[]> {
+  searchRepositoryStarred(name: string): Observable<Repository[]> {
     return this.http.get<Repository[]>(
       `https://api.github.com/users/${name}/starred`
     );
