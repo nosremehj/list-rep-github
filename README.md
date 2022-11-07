@@ -64,4 +64,4 @@ no console onde será hospedado para a visualização. Normalmente sendo em `htt
 O deploy do projeto foi feito no Vercel, uma plataforma de nuvem muito versátil para pequenas aplicações.
 Segue abaixo o link para a visualização do projeto hospedado.
 
-https://test-atech-ten.vercel.app/
+https://list-rep-github.vercel.app/
